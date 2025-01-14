@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cities from "../data/cities";
-import "../styles/AddCargoForm.css"; // Этот файл можно использовать для дополнительной кастомной стилизации
+import "../styles/AddCargoForm.css";
 
 const AddCargoForm = ({ addCargo }) => {
   const [formData, setFormData] = useState({
@@ -14,27 +14,24 @@ const AddCargoForm = ({ addCargo }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setError(""); // Сброс ошибки при изменении поля
+    setError("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, origin, destination, departureDate } = formData;
 
-    // Проверка, что все поля заполнены
     if (!name || !origin || !destination || !departureDate) {
       setError("Все поля должны быть заполнены.");
       return;
     }
 
-    // Проверка, что дата отправления не в прошлом
     const today = new Date().toISOString().split("T")[0];
     if (departureDate < today) {
       setError("Дата отправления не может быть в прошлом.");
       return;
     }
 
-    // Добавление нового груза
     addCargo({
       id: `CARGO${Date.now()}`,
       name,
@@ -44,7 +41,7 @@ const AddCargoForm = ({ addCargo }) => {
       status: "Ожидает отправки",
     });
 
-    setFormData({ name: "", origin: "", destination: "", departureDate: "" }); // Очистка формы
+    setFormData({ name: "", origin: "", destination: "", departureDate: "" });
   };
 
   return (
