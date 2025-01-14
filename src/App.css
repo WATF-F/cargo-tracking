@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  .cargo-table {
+    font-size: 14px;
+  }
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+.status-yellow {
+  background-color: yellow;
+}
+
+.status-blue {
+  background-color: blue;
+  color: white;
+}
+
+.status-green {
+  background-color: green;
+  color: white;
+}
